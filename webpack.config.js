@@ -28,6 +28,10 @@ module.exports = {
       test: /\.jsx?$/,
       include: path.join(__dirname, 'src'),
       loaders: 'react-hot-loader!babel-loader'
+    }, {
+      test: /\.scss$/,
+      include: path.join(__dirname, 'src'),
+      loader: 'style-loader!css-loader!sass-loader'
     }]
   }
 }
