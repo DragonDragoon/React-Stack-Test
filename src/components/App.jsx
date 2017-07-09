@@ -12,10 +12,9 @@ class App extends React.Component {
   }
 
   render() {
-    debugger;
     var messageNodes = this.state.messages.map((message) => {
       return (
-        <div>{message}</div>
+        <div style={{color: 'blue'}}>{message}</div>
       );
     });
 

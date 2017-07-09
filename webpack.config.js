@@ -1,24 +1,33 @@
 // CLI: ./node_modules/.bin/webpack x.js y.js
+let path = require('path');
+let webpack = require('webpack');
+
 module.exports = {
   devtool: 'eval-source-map',
   entry: {
     main: [
-      `${__dirname}/src/main.js`
+      'webpack-dev-server/client?http://localhost:8000',
+      'webpack/hot/only-dev-server',
+      path.join(__dirname, 'src', 'main.js')
     ]
   },
   output: {
-    path: `${__dirname}/public`,
+    path: path.join(__dirname, 'public'),
     publicPath: '/public/',
     filename: '[name].js',
   },
   devServer: {
     port: 8000
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ],
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loaders: 'babel-loader'
+      include: path.join(__dirname, 'src'),
+      loaders: 'react-hot-loader!babel-loader'
     }]
   }
 }
