@@ -83,7 +83,7 @@ module.exports = __webpack_require__(2);
 
 var message = __webpack_require__(0);
 
-document.write(message);
+document.write(`This is formatted with ES6 ${message}`);
 
 /***/ })
 /******/ ]);
