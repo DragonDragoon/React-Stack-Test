@@ -1,5 +1,6 @@
 // CLI: ./node_modules/.bin/webpack x.js y.js
 module.exports = {
+  devtool: 'eval-source-map',
   entry: {
     main: [
       `${__dirname}/src/main.js`
@@ -7,7 +8,11 @@ module.exports = {
   },
   output: {
     path: `${__dirname}/public`,
+    publicPath: '/public/',
     filename: '[name].js',
+  },
+  devServer: {
+    port: 8000
   },
   module: {
     loaders: [{
