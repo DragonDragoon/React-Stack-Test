@@ -2,8 +2,7 @@
 module.exports = {
   entry: {
     main: [
-      `${__dirname}/script1.js`,
-      `${__dirname}/script2.js`
+      `${__dirname}/src/main.js`
     ]
   },
   output: {
@@ -11,12 +10,10 @@ module.exports = {
     filename: '[name].js',
   },
   module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loaders: 'babel-loader'
-      }
-    ]
+    loaders: [{
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loaders: 'babel-loader'
+    }]
   }
 }
