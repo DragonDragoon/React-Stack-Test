@@ -48,13 +48,13 @@ class MessageBox extends React.Component {
           onKeyUp={this.onKeyUp.bind(this)}
           style={{
             width: '100%',
-            borderColor: '#D0D0D0',
             resize: 'none',
             borderRadius: 3,
             minHeight: 50,
             color: '#555',
             fontSize: 14,
-            outline: 'auto 0px'
+            outline: 'auto 0px',
+            border: '1px solid rgb(208, 208, 208)'
           }} />
       </Card>
     );

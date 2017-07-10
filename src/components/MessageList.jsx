@@ -28,7 +28,7 @@ class MessageList extends React.Component {
     // Get a reference to the database service
     let database = Firebase.database();
 
-    database.ref('/messages/').once('value').then((snapshot) => {
+    database.ref('/messages/').on('value', (snapshot) => {
       let messagesVal = snapshot.val();
       let messages = _(messagesVal)
         .keys()
@@ -38,7 +38,7 @@ class MessageList extends React.Component {
           return cloned;
         })
         .value();
-        
+
       this.setState({
         messages: messages
       });
