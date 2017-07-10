@@ -1,4 +1,6 @@
 import React from 'react';
+import Avatar from 'material-ui/avatar';
+import { ListItem } from 'material-ui/list';
 
 class Message extends React.Component {
   constructor(props) {
@@ -7,7 +9,9 @@ class Message extends React.Component {
 
   render() {
     return (
-      <div>{this.props.message}</div>
+      <ListItem
+        leftAvatar={<Avatar src="http://www.material-ui.com/images/ok-128.jpg" />}
+      >{this.props.message}</ListItem>
     );
   }
 }
