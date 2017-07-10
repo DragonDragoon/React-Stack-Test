@@ -29,7 +29,16 @@ class MessageList extends React.Component {
     let database = Firebase.database();
 
     database.ref('/messages/').once('value').then((snapshot) => {
-      let messages = snapshot.val();
+      let messagesVal = snapshot.val();
+      let messages = _(messagesVal)
+        .keys()
+        .map((messageKey) => {
+          let cloned = _.clone(messagesVal[messageKey]);
+          cloned.key = messageKey;
+          return cloned;
+        })
+        .value();
+        
       this.setState({
         messages: messages
       });
