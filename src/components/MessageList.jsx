@@ -10,7 +10,7 @@ class MessageList extends React.Component {
     super(props);
 
     this.state = {
-      messages: []
+      messages: {}
     };
 
 
@@ -25,28 +25,31 @@ class MessageList extends React.Component {
 
     Firebase.initializeApp(config);
 
-    // Get a reference to the database service
-    let database = Firebase.database();
+    Firebase.database().ref('messages').on('child_added', (msg) => {
+      if (this.state.messages[msg.key]) {
+        return;
+      }
 
-    database.ref('/messages/').on('value', (snapshot) => {
-      let messagesVal = snapshot.val();
-      let messages = _(messagesVal)
-        .keys()
-        .map((messageKey) => {
-          let cloned = _.clone(messagesVal[messageKey]);
-          cloned.key = messageKey;
-          return cloned;
-        })
-        .value();
+       let msgVal = msg.val();
+       msgVal.key = msg.key;
+       this.state.messages[msgVal.key] = msgVal;
 
+       this.setState({
+         messages: this.state.messages
+       });
+    });
+
+    Firebase.database().ref('messages').on('child_removed', (msg) => {
+      let key = msg.key;
+      delete this.state.messages[key];
       this.setState({
-        messages: messages
-      });
+        messages: this.state.messages
+      })
     });
   }
 
   render() {
-    var messageNodes = this.state.messages.map((message) => {
+    var messageNodes = _.values(this.state.messages).map((message) => {
       return (
         <Message message={message.message} />
       );
