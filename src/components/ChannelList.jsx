@@ -1,33 +1,33 @@
 import React from 'react';
-import Message from './Message.jsx';
+import Channel from './Channel.jsx';
 import Card from 'material-ui/card';
 import List from 'material-ui/list';
 
-class MessageList extends React.Component {
+class ChannelList extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      messages: [
-        'hi, how are you?',
-        'i am fine, and you?'
+      channels: [
+        'Dogs',
+        'Cats'
       ]
     };
   }
 
   render() {
-    var messageNodes = this.state.messages.map((message) => {
+    var channelNodes = this.state.channels.map((channel) => {
       return (
-        <Message message={message} />
+        <Channel channel={channel} />
       );
     });
 
     return (
       <Card style={{
-        flexGrow: 2
+        flexGrow: 1
       }}>
         <List>
-          {messageNodes}
+          {channelNodes}
         </List>
       </Card>
     );
@@ -35,4 +35,4 @@ class MessageList extends React.Component {
   }
 }
 
-export default MessageList;
+export default ChannelList;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import MessageList from './MessageList.jsx';
-//import mui from 'material-ui';
+import ChannelList from './ChannelList.jsx';
 import MuiThemeProvider from 'material-ui/styles/muithemeprovider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, blue100, pink400 } from 'material-ui/styles/colors';
@@ -30,7 +30,16 @@ class App extends React.Component {
       <MuiThemeProvider muiTheme={this.muiTheme}>
         <div>
           <AppBar title="Awesome Chat App" />
-          <MessageList />
+          <div style={{
+            display: 'flex',
+            flexFlow: 'row wrap',
+            //maxWidth: 1200,
+            width: '95%',
+            margin: '30px auto 30px'
+          }}>
+            <ChannelList />
+            <MessageList />
+          </div>
         </div>
       </MuiThemeProvider>
     );
