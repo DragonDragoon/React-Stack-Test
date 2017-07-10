@@ -2,14 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MessageList from './MessageList.jsx';
 import ChannelList from './ChannelList.jsx';
+import MessageBox from './MessageBox.jsx';
 import MuiThemeProvider from 'material-ui/styles/muithemeprovider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, blue100, pink400 } from 'material-ui/styles/colors';
 import AppBar from 'material-ui/appbar';
-
-//let ThemeManager = new mui.Styles.ThemeManager();
-//let Colors = mui.Styles.Colors;
-//let AppBar = mui.AppBar;
 
 class App extends React.Component {
   constructor() {
@@ -40,6 +37,7 @@ class App extends React.Component {
             <ChannelList />
             <MessageList />
           </div>
+          <MessageBox />
         </div>
       </MuiThemeProvider>
     );
