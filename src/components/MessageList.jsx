@@ -13,18 +13,6 @@ class MessageList extends React.Component {
       messages: {}
     };
 
-
-    // Set the configuration for your app
-    // TODO: Replace with your project's config object
-    let config = {
-      apiKey: 'AIzaSyCV5CW4WFKRdrGrw9rUc8MvPmNglzkz0GY',
-      authDomain: 'react-stack-test-21832.firebaseapp.com',
-      databaseURL: 'https://react-stack-test-21832.firebaseio.com/',
-      storageBucket: 'react-stack-test-21832.appspot.com'
-    };
-
-    Firebase.initializeApp(config);
-
     Firebase.database().ref('messages').on('child_added', (msg) => {
       if (this.state.messages[msg.key]) {
         return;

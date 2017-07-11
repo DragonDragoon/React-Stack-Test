@@ -17,7 +17,10 @@ module.exports = {
     filename: '[name].js',
   },
   devServer: {
-    port: 8000
+    port: 8000,
+    stats: {
+      warnings: false
+    }
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
