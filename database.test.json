@@ -12,5 +12,19 @@
       "author": "Another Guy",
       "profilePic": "http://www.material-ui.com/images/kolage-128.jpg"
     }
+  },
+  "channels": {
+    "flux": {
+      "name": "flux"
+    },
+    "react": {
+      "name": "react"
+    },
+    "firebase": {
+      "name": "firebase"
+    },
+    "webpack": {
+      "name": "webpack"
+    }
   }
 }

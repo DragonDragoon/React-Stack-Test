@@ -2,6 +2,10 @@ import React from 'react';
 import {Card, CardText, RaisedButton} from 'material-ui';
 import Actions from '../actions';
 
+// Needed for onTouchTap
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 class Login extends React.Component {
   onClick() {
     Actions.login();
