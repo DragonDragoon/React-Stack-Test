@@ -49,7 +49,7 @@ class App extends React.Component {
   render() {
     let view = <Login />;
 
-    //if (this.props.user) {
+    if (this.props.user) {
       view = (
         <div>
           <div style={{
@@ -64,7 +64,7 @@ class App extends React.Component {
           <MessageBox />
         </div>
       );
-    //}
+    }
 
     return (
       <MuiThemeProvider muiTheme={this.muiTheme}>

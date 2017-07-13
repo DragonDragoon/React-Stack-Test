@@ -5,10 +5,12 @@ class Actions {
   constructor() {
     this.generateActions(
       'channelsReceived',
-      'channelsFailed'
+      'channelsFailed',
+      'messagesReceived',
+      'messagesFailed'
     );
   };
-  
+
   login(args) {
     return (dispatch) => {
       var provider = new Firebase.auth.GoogleAuthProvider();

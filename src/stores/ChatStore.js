@@ -2,15 +2,30 @@ import alt from '../alt';
 import Actions from '../actions';
 import { decorate, bind, datasource } from 'alt-utils/lib/decorators';
 import ChannelSource from '../sources/ChannelSource';
+import MessageSource from '../sources/MessageSource';
 import _ from 'lodash';
 
-@datasource(ChannelSource)
+@datasource(ChannelSource, MessageSource)
 @decorate(alt)
 class ChatStore {
   constructor() {
     this.state = {
-      user: null
+      user: null,
+      messages: null
     };
+  }
+
+  @bind(Actions.messagesReceived)
+  receivedMessages(messages) {
+    _(messages)
+      .keys()
+      .each((key) => {
+        messages[key].key = key;
+      });
+
+    this.setState({
+      messages
+    });
   }
 
   @bind(Actions.channelsReceived)
@@ -25,11 +40,13 @@ class ChatStore {
           selectedChannel = channels[key];
         }
       });
-      
-      this.setState({
-        channels,
-        selectedChannel
-      });
+
+    this.setState({
+      channels,
+      selectedChannel
+    });
+
+    setTimeout(this.getInstance().getMessages, 100);
   }
 
   @bind(Actions.login)

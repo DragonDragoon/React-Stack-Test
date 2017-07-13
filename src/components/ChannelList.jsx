@@ -61,7 +61,6 @@ class ChannelList extends React.Component {
         </List>
       </Card>
     );
-
   }
 }
 
