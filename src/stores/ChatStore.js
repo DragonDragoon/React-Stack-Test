@@ -44,6 +44,19 @@ class ChatStore {
     setTimeout(this.getInstance().sendMessage, 10);
   }
 
+  @bind(Actions.messageReceived)
+  messageReceived(message) {
+    if (this.state.messages[message.key]) {
+      return;
+    }
+
+    this.state.messages[message.key] = message;
+
+    this.setState({
+      messages: this.state.messages
+    });
+  }
+
   @bind(Actions.channelOpened)
   channelOpened(selectedChannel) {
     _(this.state.channels)

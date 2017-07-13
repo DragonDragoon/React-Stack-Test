@@ -38,6 +38,12 @@ let MessageSource = {
           let messages = snapshot.val();
 
           resolve(messages);
+
+          FirebaseRef.on('child_added', (message) => {
+            let messageVal = message.val();
+            messageVal.key = message.key;
+            Actions.messageReceived(messageVal);
+          });
         });
       });
     },
