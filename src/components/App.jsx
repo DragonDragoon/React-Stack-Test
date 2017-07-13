@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MessageList from './MessageList.jsx';
-import ChannelList from './ChannelList.jsx';
-import MessageBox from './MessageBox.jsx';
+import Chat from './Chat.jsx';
 import Login from './Login.jsx';
 import MuiThemeProvider from 'material-ui/styles/muithemeprovider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -50,20 +48,7 @@ class App extends React.Component {
     let view = <Login />;
 
     if (this.props.user) {
-      view = (
-        <div>
-          <div style={{
-            display: 'flex',
-            flexFlow: 'row wrap',
-            width: '95%',
-            margin: '30px auto 30px'
-          }}>
-            <ChannelList />
-            <MessageList />
-          </div>
-          <MessageBox />
-        </div>
-      );
+      view = <Chat />;
     }
 
     return (
