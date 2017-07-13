@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Chat from './Chat.jsx';
-import Login from './Login.jsx';
 import MuiThemeProvider from 'material-ui/styles/muithemeprovider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, blue100, pink400 } from 'material-ui/styles/colors';
 import AppBar from 'material-ui/appbar';
-import connectToStores from 'alt-utils/lib/connectToStores';
-import ChatStore from '../stores/ChatStore.js';
 import * as Firebase from 'firebase';
+import {Route} from 'react-router-dom';
+import Chat from '../components/Chat.jsx';
+import Login from '../components/Login.jsx';
 
-@connectToStores
 class App extends React.Component {
   constructor() {
     super();
@@ -36,26 +34,14 @@ class App extends React.Component {
     });
   }
 
-  static getStores() {
-    return [ChatStore];
-  }
-
-  static getPropsFromStores() {
-    return ChatStore.getState();
-  }
-
   render() {
-    let view = <Login />;
-
-    if (this.props.user) {
-      view = <Chat />;
-    }
-
     return (
       <MuiThemeProvider muiTheme={this.muiTheme}>
         <div>
           <AppBar title="Awesome Chat App" />
-          {view}
+          <Route exact path="/" component={Chat} />
+          <Route exact path="/chat" component={Chat}/>
+          <Route exact path="/login" component={Login}/>
         </div>
       </MuiThemeProvider>
     );
