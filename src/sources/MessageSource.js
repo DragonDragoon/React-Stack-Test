@@ -4,12 +4,6 @@ import Firebase from 'firebase';
 let MessageSource = {
   getMessages: {
     remote(state) {
-      /*
-      if (firebaseRef) {
-        Firebase.database().ref(`messages${state.selectedChannel.key}`)
-      }
-      */
-
       return new Promise((resolve, reject) => {
         Firebase.database().ref(`/messages/${state.selectedChannel.key}`).once('value', (snapshot) => {
           let messages = snapshot.val();
@@ -19,7 +13,8 @@ let MessageSource = {
       });
     },
     success: Actions.messagesReceived,
-    error: Actions.messagesFailed
+    error: Actions.messagesFailed,
+    loading: Actions.messagesLoading
   }
 }
 

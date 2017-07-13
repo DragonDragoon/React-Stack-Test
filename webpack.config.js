@@ -3,7 +3,7 @@ let path = require('path');
 let webpack = require('webpack');
 
 module.exports = {
-//  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
   entry: {
     main: [
       'webpack-dev-server/client?http://localhost:8000',

@@ -2,6 +2,7 @@ import React from 'react';
 import Message from './Message.jsx';
 import Card from 'material-ui/card';
 import List from 'material-ui/list';
+import CircularProgress from 'material-ui/circularprogress';
 import * as Firebase from 'firebase';
 import _ from 'lodash';
 import connectToStores from 'alt-utils/lib/connectToStores';
@@ -28,12 +29,21 @@ class MessageList extends React.Component {
   render() {
     let messageNodes = null;
 
-    if (this.props.messages) {
+    if (!this.props.messagesLoading) {
       messageNodes = _.values(this.props.messages).map((message) => {
         return (
           <Message message={message.message} key={message.key} />
         );
       });
+    } else {
+      messageNodes = <CircularProgress mode="indeterminate"
+        style={{
+          paddingTop: 20,
+          paddingBottom: 20,
+          margin: '0 auto',
+          display: 'block',
+          width: '60px'
+        }} />
     }
 
     return (
