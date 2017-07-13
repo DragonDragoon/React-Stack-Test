@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'material-ui/card';
 import trim from 'trim';
-import * as Firebase from 'firebase';
+import Actions from '../actions';
 
 class MessageBox extends React.Component {
   constructor(props) {
@@ -22,10 +22,7 @@ class MessageBox extends React.Component {
     if (evt.keyCode === 13 && trim(evt.target.value) != '') {
       evt.preventDefault();
 
-      Firebase.database().ref('messages').push({
-        message: this.state.message
-      });
-
+      Actions.sendMessage(this.state.message);
 
       this.setState({
         message: ''
