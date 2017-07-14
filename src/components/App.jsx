@@ -42,6 +42,7 @@ class App extends React.Component {
           <AppBar title="Awesome Chat App" />
           <ProtectedRoute exact path="/" component={Chat} />
           <ProtectedRoute exact path="/chat" component={Chat} />
+          <ProtectedRoute path="/chat/:channel" component={Chat} />
           <Route exact path="/login" component={Login} />
         </div>
       </MuiThemeProvider>

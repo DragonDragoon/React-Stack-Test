@@ -10,8 +10,18 @@ import ChatStore from '../stores/ChatStore';
 class ChannelList extends React.Component {
   constructor(props) {
     super(props);
+  }
 
-    ChatStore.getChannels();
+  componentDidMount() {
+    this.selectedChannel = this.props.match.params.channel;
+    ChatStore.getChannels(this.selectedChannel);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.selectedChannel != nextProps.match.params.channel) {
+      this.selectedChannel = nextProps.match.params.channel;
+      ChatStore.getChannels(this.selectedChannel);
+    }
   }
 
   static getStores() {
