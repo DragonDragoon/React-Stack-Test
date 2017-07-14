@@ -1,17 +1,28 @@
 import React from 'react';
-import {Card, CardText, RaisedButton} from 'material-ui';
+import { Card, CardText, RaisedButton } from 'material-ui';
 import Actions from '../actions';
+import { Route, Redirect } from 'react-router-dom';
 
 // Needed for onTouchTap
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
 class Login extends React.Component {
+  state = {
+    redirect: false
+  };
+
   onClick() {
-    Actions.login();
+    Actions.login(this);
   }
 
   render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect to="/chat" />
+      );
+    }
+
     return (
       <Card style={{
         'maxWidth': '800px',

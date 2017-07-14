@@ -5,9 +5,10 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import { blue500, blue700, blue100, pink400 } from 'material-ui/styles/colors';
 import AppBar from 'material-ui/appbar';
 import * as Firebase from 'firebase';
-import {Route} from 'react-router-dom';
-import Chat from '../components/Chat.jsx';
-import Login from '../components/Login.jsx';
+import { Route, Redirect } from 'react-router-dom';
+import ProtectedRoute from './ProtectedRoute.jsx'
+import Chat from './Chat.jsx';
+import Login from './Login.jsx';
 
 class App extends React.Component {
   constructor() {
@@ -39,9 +40,9 @@ class App extends React.Component {
       <MuiThemeProvider muiTheme={this.muiTheme}>
         <div>
           <AppBar title="Awesome Chat App" />
-          <Route exact path="/" component={Chat} />
-          <Route exact path="/chat" component={Chat}/>
-          <Route exact path="/login" component={Login}/>
+          <ProtectedRoute exact path="/" component={Chat} />
+          <ProtectedRoute exact path="/chat" component={Chat} />
+          <Route exact path="/login" component={Login} />
         </div>
       </MuiThemeProvider>
     );
